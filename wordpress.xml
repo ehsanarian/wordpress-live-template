@@ -1,0 +1,88 @@
+<templateSet group="wordpress">
+  <template name="wp-dir" value="&lt;?php bloginfo('template_directory'); ?&gt;/" description="template directory" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="wp-post" value="&lt;?php $args = array( 'post_type' =&gt; 'post',  'showposts' =&gt; 10,'category_name' =&gt; '' , 'order' =&gt; 'DESC' );&#10;&#9;&#9;&#9;&#9;$loop = new WP_Query( $args );&#10;&#9;&#9;&#9;&#9;while ( $loop-&gt;have_posts() ) : $loop-&gt;the_post();&#10;&#9;&#9;&#9;&#9;&#9;$src_= wp_get_attachment_image_src( get_post_thumbnail_id( $post-&gt;ID ), 'single-post-thumbnail' ); ?&gt;&#10;&#9;&#9;&#9;&#9;&#9;$POST$&#10;&lt;?php endwhile; wp_reset_query();?&gt;&#9;&#9;&#9;&#9;&#9;" description="havepost" toReformat="false" toShortenFQNames="true">
+    <variable name="POST" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="wp-post:title" value="&lt;?php the_title(); ?&gt;" description="get post title" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="wp-post:pic" value="&lt;?php if ( has_post_thumbnail() ) {the_post_thumbnail('post-thumbnail', array( 'class'&#9;=&gt;&quot;img-responsive&quot;));}else { ?&gt;&#10;&#9;&#9;&lt;img src=&quot;&lt;?php bloginfo('template_directory'); ?&gt;/$END$&quot; class=&quot;img-responsive&quot; alt=&quot;&quot;&gt;&#10;&lt;?php } ?&gt;" description="post content" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="wp-post:cn" value="&lt;?php the_content(); ?&gt;" description="post content" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="wp-post:pr" value="&lt;?php the_permalink(); ?&gt;" description="post permalink" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="wp-post:ex" value="&lt;?php the_excerpt(); ?&gt;" description="post expert" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="wp-header" value="&lt;?php get_header(); ?&gt;$END$" description="get header()" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="wp-footer" value="&lt;?php get_footer(); ?&gt;$END$" description="get_footer" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="wp-sidebar" value="&lt;?php get_sidebar(); ?&gt;$END$" description="get_sidebar" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="wp-foot" value="&lt;?php wp_footer(); ?&gt;$END$" description="wp_footer()" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="wp-head" value="&lt;?php wp_head(); ?&gt;$END$" description="wp_head()" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="wp-getsearch" value="&lt;?php get_search_form(); ?&gt;$END$" description="&lt;?php get_search_form(); ?&gt;" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="wp-post:date" value="&lt;?php the_title(); ?&gt;$END$" description="&lt;?php the_title(); ?&gt;" toReformat="false" toShortenFQNames="true">
+    <context />
+  </template>
+  <template name="wp-postcat" value="&lt;?php $args = array('posts_per_page' =&gt; 9, 'paged' =&gt; $paged , 'post_type' =&gt; 'post', 'category_name' =&gt; 'article' , 'order' =&gt; 'DESC' );&#10;$loop = new WP_Query( $args );&#10;query_posts($args);&#10;while (have_posts()) : the_post();&#10;$src_ = wp_get_attachment_image_src(get_post_thumbnail_id($post-&gt;ID), 'single-post-thumbnail'); ?&gt;&#10;            &#10;&lt;?php endwhile; ?&gt;  &#10;&lt;div class=&quot;col-xs-12 col-sm-12 col-md-12 col-lg-12&quot;&gt;&#10;&lt;?php   &#10;       if ( function_exists('wp_bootstrap_pagination') )&#10;        wp_bootstrap_pagination();&#10;?&gt;&#10;&lt;/div&gt;&#10;&lt;?php wp_reset_query(); ?&gt;" description="category" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="wp-postpage" value="&lt;?php while (have_posts()) : the_post();&#10;$src_ = wp_get_attachment_image_src(get_post_thumbnail_id($post-&gt;ID), 'single-post-thumbnail'); ?&gt;&#10;&#10;&lt;?php endwhile; wp_reset_query(); ?&gt;" description="loop post page" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+</templateSet>
