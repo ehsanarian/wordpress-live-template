@@ -75,12 +75,72 @@
   <template name="wp-post:date" value="&lt;?php the_title(); ?&gt;$END$" description="&lt;?php the_title(); ?&gt;" toReformat="false" toShortenFQNames="true">
     <context />
   </template>
-  <template name="wp-postcat" value="&lt;?php $args = array('posts_per_page' =&gt; 9, 'paged' =&gt; $paged , 'post_type' =&gt; 'post', 'category_name' =&gt; 'article' , 'order' =&gt; 'DESC' );&#10;$loop = new WP_Query( $args );&#10;query_posts($args);&#10;while (have_posts()) : the_post();&#10;$src_ = wp_get_attachment_image_src(get_post_thumbnail_id($post-&gt;ID), 'single-post-thumbnail'); ?&gt;&#10;            &#10;&lt;?php endwhile; ?&gt;  &#10;&lt;div class=&quot;col-xs-12 col-sm-12 col-md-12 col-lg-12&quot;&gt;&#10;&lt;?php   &#10;       if ( function_exists('wp_bootstrap_pagination') )&#10;        wp_bootstrap_pagination();&#10;?&gt;&#10;&lt;/div&gt;&#10;&lt;?php wp_reset_query(); ?&gt;" description="category" toReformat="false" toShortenFQNames="true">
+  <template name="wp-postcat" value="&lt;?php $args = array('posts_per_page' =&gt; 9, 'paged' =&gt; $paged , 'post_type' =&gt; 'post', 'category_name' =&gt; '' , 'order' =&gt; 'DESC' );&#10;$loop = new WP_Query( $args );&#10;query_posts($args);&#10;while (have_posts()) : the_post();&#10;$src_ = wp_get_attachment_image_src(get_post_thumbnail_id($post-&gt;ID), 'single-post-thumbnail'); ?&gt;&#10;            &#10;&lt;?php endwhile; ?&gt;  &#10;&lt;div class=&quot;col-xs-12 col-sm-12 col-md-12 col-lg-12&quot;&gt;&#10;&lt;?php   &#10;       if ( function_exists('wp_bootstrap_pagination') )&#10;        wp_bootstrap_pagination();&#10;?&gt;&#10;&lt;/div&gt;&#10;&lt;?php wp_reset_query(); ?&gt;" description="category" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="OTHER" value="true" />
     </context>
   </template>
   <template name="wp-postpage" value="&lt;?php while (have_posts()) : the_post();&#10;$src_ = wp_get_attachment_image_src(get_post_thumbnail_id($post-&gt;ID), 'single-post-thumbnail'); ?&gt;&#10;&#10;&lt;?php endwhile; wp_reset_query(); ?&gt;" description="loop post page" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="wp-title" value="&lt;?php bloginfo('title'); ?&gt;" description="title blog" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="wp-des" value="&lt;?php bloginfo('description'); ?&gt;" description="description blog" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="wp-bloginfo" value="&lt;?php bloginfo('$END$'); ?&gt;" description="call bloginfo function" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="wp-get_search_form" value="&lt;?php get_search_form(); ?&gt;" description="get searchform" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="wp-shortcode" value="&lt;?php echo do_shortcode('$END$'); ?&gt;" description="do shortcode example" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="wp-set_post_view" value="function set_post_views( $postID )&#10;{&#10;    $count_key = 'post_views_count';&#10;    $count = get_post_meta($postID, $count_key, true);&#10;    if($count==''){&#10;        $count = 0;&#10;        // delete old 'post_views_count' value.&#10;        delete_post_meta( $postID, $count_key );&#10;        // add new 'post_views_count' value.&#10;        add_post_meta( $postID, $count_key, '0' );&#10;    } else {&#10;        $count++;&#10;        // update old 'post_views_count' value.&#10;        update_post_meta( $postID, $count_key, $count );&#10;    }&#10;}&#10;&#10;function get_post_views( $postID )&#10;{&#10;    $count_key = 'post_views_count';&#10;    $count = get_post_meta( $postID, $count_key, true );&#10;    if($count=='') {&#10;        // delete old 'post_views_count' value.&#10;        delete_post_meta( $postID, $count_key );&#10;        // add new 'post_views_count' value.&#10;        add_post_meta( $postID, $count_key, '0' );&#10;&#10;        return &quot;0&quot;;&#10;    }&#10;&#10;    return $count;&#10;}" description="add to function.php" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="wp-post:author" value="&lt;?php the_author_posts_link(); ?&gt;" description="&lt;?php the_author_posts_link(); ?&gt;" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="wp-post:author_link" value="&lt;?php the_author_posts_link(); ?&gt;" description="&lt;?php the_author_posts_link(); ?&gt;" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="wp-check-login" value="&lt;?php if ( !is_user_logged_in() ) { ?&gt;&#10; $END$&#10;&lt;?php } ?&gt;" description="check user is login" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="wp-loginform" value="&lt;form name=&quot;loginform&quot; id=&quot;loginform&quot; action=&quot;$END$/wp-login.php&quot; method=&quot;post&quot;&gt;&#10;&lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot; نام کاربری ...&quot;  name=&quot;log&quot; id=&quot;user&quot;  /&gt;&#10;&lt;input type=&quot;password&quot; class=&quot;form-control&quot; placeholder=&quot; رمز عبور ...&quot;  name=&quot;pwd&quot; id=&quot;pass&quot;  /&gt;&#10;&lt;input name=&quot;rememberme&quot; type=&quot;checkbox&quot; id=&quot;rememberme&quot; value=&quot;forever&quot; class=&quot;hidden&quot;&gt;&#10;&lt;input type=&quot;hidden&quot; name=&quot;redirect_to&quot; value=&quot;http://wordpress.dev/&quot;&gt;&#10;&lt;button type=&quot;submit&quot; name=&quot;wp-submit&quot; id=&quot;wp-submit&quot; class=&quot;btn btn-default pull-left&quot;&gt;ورود&lt;/button&gt;&#10;&lt;/form&gt;" description="add login form to project" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="wp-set-widget" value="if ( function_exists('register_sidebar') )&#10;    register_sidebar(array(&#10;        'name' =&gt; '$END$',&#10;        'before_widget' =&gt; '&lt;div class=&quot;widget&quot;&gt;',&#10;        'after_widget' =&gt; '&lt;/div&gt;',&#10;        'before_title' =&gt; '&lt;h2 class=&quot;widgettitle&quot;&gt;',&#10;        'after_title' =&gt; '&lt;/h2&gt;',&#10;    ));&#10;?&gt;" description="set widget to function.php" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="wp-get-widget" value="&lt;?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('$END$') ) : ?&gt;&lt;?php endif; ?&gt;" description="get widget file" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="OTHER" value="true" />
     </context>
